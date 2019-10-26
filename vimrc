@@ -86,9 +86,6 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
-" Bug Fixed for TagList.vim, only support 'exuberant ctags'.
-" The official website: http://ctags.sourceforge.net/
-let Tlist_Ctags_Cmd = '/usr/local/ctags-self/bin/ctags'
 
 " Note that --sync flag is used to block the execution until the installer finishes.
 " (If you're behind an HTTP proxy, you may need to add --insecure option to the curl command.
@@ -104,11 +101,10 @@ endif
 "
 call plug#begin('$HOME/.vim/plugged')
 
-
 Plug 'vim-scripts/SrcExpl'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
-Plug 'wesleyche/trinity'
+" Plug 'wesleyche/trinity'
 
 Plug 'itchyny/lightline.vim'
 
@@ -118,10 +114,6 @@ Plug 'https://github.com/Alok/notational-fzf-vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-
-" Plug 'ajh17/VimCompletesMe'
-
-
 
 call plug#end()
 
@@ -144,10 +136,6 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 
-let g:nv_window_direction = 'up'
-let g:nv_ignore_pattern = ['README.*', '.git', 'LICENSE', '*.sh']
-
-
 " === [Special Plugged Configuration] <END>
 
 " Mapped as Emacs.
@@ -155,6 +143,9 @@ inoremap <C-A> <Home>
 inoremap <C-B> <Left>
 inoremap <C-E> <End>
 inoremap <C-F> <Right>
+
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
 
 " Rename file.
 command! -nargs=1 Rename let tpname = expand('%:t') | saveas <args> | edit <args> | call delete(expand(tpname))
@@ -197,7 +188,12 @@ set nocsverb
 cs add $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/cscope.out $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable
 set csverb
 
+
 " TagList
+nmap <F5> :TlistToggle<CR>
+" Bug Fixed for TagList.vim, only support 'exuberant ctags'.
+" The official website: http://ctags.sourceforge.net/
+let Tlist_Ctags_Cmd = '/usr/local/ctags-self/bin/ctags'
 let Tlist_Inc_Winwidth = 0
 let Tlist_Exit_OnlyWindow = 0
 
@@ -205,6 +201,7 @@ let Tlist_Auto_Open = 0
 let Tlist_Use_Right_Window = 1
 
 " Source Explorer
+nmap <F6> :SrcExplToggle<CR>
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 10
 let g:SrcExpl_jumpKey = "<ENTER>"
@@ -221,10 +218,6 @@ let g:SrcExpl_pluginList = [
         \ ]
 
 " NERD Tree
-let NERDTreeWinPos = "left"
-
-" Tri-bro combo.
-nmap <F6> :SrcExplToggle<CR>
-nmap <F5> :TlistToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
+let NERDTreeWinPos = "left"
 
