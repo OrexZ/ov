@@ -104,29 +104,34 @@ call plug#begin('$HOME/.vim/plugged')
 Plug 'vim-scripts/SrcExpl'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
-" Plug 'wesleyche/trinity'
+Plug 'mhinz/vim-startify'
+Plug 'kien/ctrlp.vim'
+Plug 'yggdroot/indentline'
+Plug 'vim-scripts/Mark'
+
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 
 Plug 'itchyny/lightline.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/Alok/notational-fzf-vim'
+Plug 'alok/notational-fzf-vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
+Plug 'skywind3000/quickmenu.vim'
+Plug 'skywind3000/vim-preview'
+
 call plug#end()
 
-if !isdirectory($HOME.'/MzNote') && exists('*mkdir') | call mkdir($HOME.'/note') | endif
-let g:nv_search_paths = ['$HOME/MzNote']
-
-" let g:gen_tags#gtags_default_map=1
+if !isdirectory($HOME.'/VimNote') && exists('*mkdir') | call mkdir($HOME.'/VimNote') | endif
+let g:nv_search_paths = [$HOME.'/VimNote']
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
 
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
@@ -144,6 +149,7 @@ inoremap <C-B> <Left>
 inoremap <C-E> <End>
 inoremap <C-F> <Right>
 
+" Exchange Windows
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 
@@ -178,15 +184,15 @@ nnoremap <silent> <leader>f       :Files<CR>
 nnoremap <silent> <leader>g       :GFiles<CR>
 nnoremap <silent> <leader>d       :Buffers<CR>
 
-" CsCope
-set tags=$HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/tags
-set csprg=/usr/bin/cscope
-set csto=0
-set cst
-set nocsverb
+"  CsCope
+"set tags=$HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/tags
+"set csprg=/usr/bin/cscope
+"set csto=0
+"set cst
 
-cs add $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/cscope.out $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable
-set csverb
+"set nocsverb
+"cs add $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/cscope.out $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable
+"set csverb
 
 
 " TagList
@@ -220,4 +226,36 @@ let g:SrcExpl_pluginList = [
 " NERD Tree
 nmap <F8> :NERDTreeToggle<CR>
 let NERDTreeWinPos = "left"
+
+" choose a favorite key to show/hide quickmenu
+noremap <silent><F12> :call quickmenu#toggle(0)<cr>
+
+" enable cursorline (L) and cmdline help (H)
+let g:quickmenu_options = "HL"
+
+" Gutentags
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_project_root = ['.root', '.git', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_plus_switch = 1
+
+" FIX: ERROR: gutentags: gtags-cscope job failed, returned: 1
+" 1. :GutentagsToggleTrace
+" 2. :GutentagsUpdate
+let g:gutentags_define_advanced_commands = 1
+
+" forbid gutentags adding gtags databases
+" let g:gutentags_auto_add_gtags_cscope = 0
+
+
 
