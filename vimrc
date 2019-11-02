@@ -50,6 +50,8 @@ set synmaxcol   =200       " Only highlight the first 200 columns.
 set completeopt =noselect,menu " Firstly, don't show the menu.
 set noshowmode             " 'lightline' plugin is more useful.
 
+set wildmode    =longest,list
+
 " set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -86,6 +88,11 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
+" refer to: https://blog.csdn.net/diy534/article/details/7327213
+set fenc        =gbk
+set guifont=Arial_monospaced_for_SAP:h9:cANSI
+set gfw=幼圆:h10:cGB2312
+
 
 " Note that --sync flag is used to block the execution until the installer finishes.
 " (If you're behind an HTTP proxy, you may need to add --insecure option to the curl command.
@@ -95,6 +102,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" <Leader Map>
+let mapleader=","
+noremap \ ,
 
 
 " === [Special Plugged Configuration] <BEG>
@@ -124,6 +135,12 @@ Plug 'tpope/vim-surround'
 
 Plug 'skywind3000/quickmenu.vim'
 Plug 'skywind3000/vim-preview'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'vim-scripts/peaksea'
+
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -160,8 +177,8 @@ command! -nargs=1 Rename let tpname = expand('%:t') | saveas <args> | edit <args
 command! -nargs=0 Ov edit $MYVIMRC
 
 " Key-Board Maps
-nnoremap <silent> <c-l>     :nohl<CR>
-nnoremap <silent> <c-\>     <c-^>
+nnoremap <silent> <C-l>    :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <c-\>    <c-^>
 
 command W w !sudo tee % > /dev/null
 
@@ -184,14 +201,38 @@ nnoremap <silent> <leader>f       :Files<CR>
 nnoremap <silent> <leader>g       :GFiles<CR>
 nnoremap <silent> <leader>d       :Buffers<CR>
 
+" <Gutentags>
+let g:gutentags_modules = ['ctags']
+" gtags for more info > let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_project_root = ['.root']
+let g:gutentags_ctags_tagfile = '-Rex.tags'
+
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_plus_switch = 1
+
+" FIX: ERROR: gutentags: gtags-cscope job failed, returned: 1
+" 1. :GutentagsToggleTrace
+" 2. :GutentagsUpdate
+let g:gutentags_define_advanced_commands = 1
+
+" forbid gutentags adding gtags databases
+let g:gutentags_auto_add_gtags_cscope = 0
+
 "  CsCope
-"set tags=$HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/tags
+"set tags=**/tags
 "set csprg=/usr/bin/cscope
 "set csto=0
 "set cst
 
 "set nocsverb
-"cs add $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable/cscope.out $HOME/mz/mz-linux/new-lab/cloud-lab/labs/linux-lab/linux-stable
+"cs add ..
 "set csverb
 
 
@@ -233,29 +274,14 @@ noremap <silent><F12> :call quickmenu#toggle(0)<cr>
 " enable cursorline (L) and cmdline help (H)
 let g:quickmenu_options = "HL"
 
-" Gutentags
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-let g:gutentags_project_root = ['.root', '.git', '.project']
-let g:gutentags_ctags_tagfile = '.tags'
-
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
+" <Beautiful theme>
+if ! has("gui_running")
+    set t_Co=256
 endif
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" feel free to choose :set background=light for a different style
+set background=dark
+colors peaksea
 
-let g:gutentags_plus_switch = 1
-
-" FIX: ERROR: gutentags: gtags-cscope job failed, returned: 1
-" 1. :GutentagsToggleTrace
-" 2. :GutentagsUpdate
-let g:gutentags_define_advanced_commands = 1
-
-" forbid gutentags adding gtags databases
-" let g:gutentags_auto_add_gtags_cscope = 0
-
-
+set guifont=Arial_monospaced_for_SAP:h9:cANSI
+set gfw=幼圆:h10:cGB2312
 
