@@ -112,18 +112,18 @@ noremap \ ,
 "
 call plug#begin('$HOME/.vim/plugged')
 
-Plug 'vim-scripts/SrcExpl'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
-Plug 'mhinz/vim-startify'
-Plug 'kien/ctrlp.vim'
-Plug 'yggdroot/indentline'
+Plug 'vim-scripts/SrcExpl'
+
 Plug 'vim-scripts/Mark'
+Plug 'tpope/vim-commentary'
+
+Plug 'kien/ctrlp.vim'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 
-Plug 'itchyny/lightline.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -136,11 +136,13 @@ Plug 'tpope/vim-surround'
 Plug 'skywind3000/quickmenu.vim'
 Plug 'skywind3000/vim-preview'
 
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'vim-scripts/peaksea'
+"Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/limelight.vim'
 
-Plug 'tpope/vim-commentary'
+Plug 'mhinz/vim-startify'
+Plug 'vim-scripts/peaksea'
+Plug 'itchyny/lightline.vim'
+Plug 'yggdroot/indentline'
 
 call plug#end()
 
@@ -246,6 +248,9 @@ let Tlist_Exit_OnlyWindow = 0
 
 let Tlist_Auto_Open = 0
 let Tlist_Use_Right_Window = 1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+
 
 " Source Explorer
 nmap <F6> :SrcExplToggle<CR>
