@@ -52,7 +52,11 @@ set noshowmode             " 'lightline' plugin is more useful.
 
 set wildmode    =longest,list
 
-" set list                   " Show non-printable characters.
+" AUTO change workspace: https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+" set autochdir
+autocmd BufEnter * silent! lcd %:p:h
+
+" set list                 " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 else
@@ -82,16 +86,16 @@ set backup
 set backupdir   =$HOME/.vim/files/backup/
 set backupext   =-vimbackup
 set backupskip  =
-set directory   =$HOME/.vim/files/swap//
+set directory   =$HOME/.vim/files/swap/
 set updatecount =100
 set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
 " refer to: https://blog.csdn.net/diy534/article/details/7327213
-set fenc        =gbk
-set guifont=Arial_monospaced_for_SAP:h9:cANSI
-set gfw=幼圆:h10:cGB2312
+" set fenc        =gbk
+" set guifont=Arial_monospaced_for_SAP:h9:cANSI
+" set gfw=幼圆:h10:cGB2312
 
 
 " Note that --sync flag is used to block the execution until the installer finishes.
@@ -107,62 +111,7 @@ endif
 let mapleader=","
 noremap \ ,
 
-
-" === [Special Plugged Configuration] <BEG>
-"
-call plug#begin('$HOME/.vim/plugged')
-
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/taglist.vim'
-Plug 'vim-scripts/SrcExpl'
-
-Plug 'vim-scripts/Mark'
-Plug 'tpope/vim-commentary'
-
-Plug 'kien/ctrlp.vim'
-
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'https://github.com/Alok/notational-fzf-vim'
-Plug 'alok/notational-fzf-vim'
-
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-
-Plug 'skywind3000/quickmenu.vim'
-Plug 'skywind3000/vim-preview'
-
-"Plug 'junegunn/goyo.vim'
-"Plug 'junegunn/limelight.vim'
-
-Plug 'mhinz/vim-startify'
-Plug 'vim-scripts/peaksea'
-Plug 'itchyny/lightline.vim'
-Plug 'yggdroot/indentline'
-
-call plug#end()
-
-if !isdirectory($HOME.'/VimNote') && exists('*mkdir') | call mkdir($HOME.'/VimNote') | endif
-let g:nv_search_paths = [$HOME.'/VimNote']
-
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Commands] --expect expression for directly executing the command
-let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-
-" spec
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-
-" === [Special Plugged Configuration] <END>
-
-" Mapped as Emacs.
+" Mapped as Emacs in insert mode.
 inoremap <C-A> <Home>
 inoremap <C-B> <Left>
 inoremap <C-E> <End>
@@ -178,11 +127,59 @@ command! -nargs=1 Rename let tpname = expand('%:t') | saveas <args> | edit <args
 " Jump to your vimrc file in anytime.
 command! -nargs=0 Ov edit $MYVIMRC
 
-" Key-Board Maps
 nnoremap <silent> <C-l>    :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <c-\>    <c-^>
 
 command W w !sudo tee % > /dev/null
+command CD cd %:h
+
+
+" === [Special Plugged Configuration] <BEG>
+"
+call plug#begin('$HOME/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/SrcExpl'
+
+
+Plug 'vim-scripts/Mark'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+Plug 'kien/ctrlp.vim'
+Plug 'skywind3000/vim-preview'
+
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'mhinz/vim-startify'
+Plug 'vim-scripts/peaksea'
+Plug 'itchyny/lightline.vim'
+
+" NOTE> *Some useful plugins, but not persent.
+" Plug 'tpope/vim-fugitive'
+" Plug 'alok/notational-fzf-vim'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'yggdroot/indentline'
+" Plug 'brookhong/cscope.vim'
+" Plug 'hari-rangarajan/CCTree'
+
+call plug#end()
+
+" if !isdirectory($HOME.'/VimNote') && exists('*mkdir') | call mkdir($HOME.'/VimNote') | endif
+" let g:nv_search_paths = [$HOME.'/VimNote']
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -199,50 +196,15 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap <silent> <leader><space> :Commands<CR>
 nnoremap <silent> <leader>a       :Rg<CR>
 nnoremap <silent> <leader>s       :BLines<CR>
-nnoremap <silent> <leader>f       :Files<CR>
-nnoremap <silent> <leader>g       :GFiles<CR>
+nnoremap <silent> <leader>j       :Files<CR>
+nnoremap <silent> <leader>f       :GFiles<CR>
 nnoremap <silent> <leader>d       :Buffers<CR>
 
-" <Gutentags>
-let g:gutentags_modules = ['ctags']
-" gtags for more info > let g:gutentags_modules = ['ctags', 'gtags_cscope']
-let g:gutentags_project_root = ['.root']
-let g:gutentags_ctags_tagfile = '-Rex.tags'
-
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_plus_switch = 1
-
-" FIX: ERROR: gutentags: gtags-cscope job failed, returned: 1
-" 1. :GutentagsToggleTrace
-" 2. :GutentagsUpdate
-let g:gutentags_define_advanced_commands = 1
-
-" forbid gutentags adding gtags databases
-let g:gutentags_auto_add_gtags_cscope = 0
-
-"  CsCope
-"set tags=**/tags
-"set csprg=/usr/bin/cscope
-"set csto=0
-"set cst
-
-"set nocsverb
-"cs add ..
-"set csverb
-
-
 " TagList
-nmap <F5> :TlistToggle<CR>
+nmap <F8> :TlistToggle<CR>
 " Bug Fixed for TagList.vim, only support 'exuberant ctags'.
 " The official website: http://ctags.sourceforge.net/
-let Tlist_Ctags_Cmd = '/usr/local/ctags-self/bin/ctags'
+let Tlist_Ctags_Cmd = $CTAGS_BIN
 let Tlist_Inc_Winwidth = 0
 let Tlist_Exit_OnlyWindow = 0
 
@@ -251,42 +213,101 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 
+" <Gutentags>
+" ALT> let g:gutentags_modules = ['ctags']
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" NOTE: close the default configuration
+let g:gutentags_add_default_project_roots = 0
+
+let g:gutentags_project_root = ['.bro']
+let g:gutentags_ctags_tagfile = '.tags'
+
+let s:vim_tags = expand('~/.cache/tags')
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+let g:gutentags_cache_dir = s:vim_tags
+
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_plus_switch = 1
+
+" FIX: ERROR: gutentags: gtags-cscope job failed, returned: 1
+" 1. :GutentagsToggleTrace
+" 2. :GutentagsUpdate
+let g:gutentags_define_advanced_commands = 1
+
+" forbid gutentags adding gtags databases
+let g:gutentags_auto_add_gtags_cscope = 1
+
+let g:gutentags_plus_nomap = 1
+
+noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
+noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
+noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
+noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
 " Source Explorer
-nmap <F6> :SrcExplToggle<CR>
-let g:SrcExpl_winHeight = 8
-let g:SrcExpl_refreshTime = 10
-let g:SrcExpl_jumpKey = "<ENTER>"
-let g:SrcExpl_gobackKey = "<SPACE>"
-let g:SrcExpl_searchLocalDef = 1 
-let g:SrcExpl_isUpdateTags = 0
-let g:SrcExpl_prevDefKey = "<F3>"
-let g:SrcExpl_nextDefKey = "<F4>"
-let g:SrcExpl_nestedAutoCmd = 1
-let g:SrcExpl_pluginList = [
-        \ "__Tag_List__",
-        \ "_NERD_tree_",
-        \ "Source_Explorer"
-        \ ]
+" nmap <F6> :SrcExplToggle<CR>
+" let g:SrcExpl_winHeight = 8
+" let g:SrcExpl_refreshTime = 10
+" let g:SrcExpl_jumpKey = "<ENTER>"
+" let g:SrcExpl_gobackKey = "<SPACE>"
+" let g:SrcExpl_searchLocalDef = 1 
+" let g:SrcExpl_isUpdateTags = 0
+" let g:SrcExpl_prevDefKey = "<F3>"
+" let g:SrcExpl_nextDefKey = "<F4>"
+" let g:SrcExpl_nestedAutoCmd = 1
+" let g:SrcExpl_pluginList = [
+"         \ "__Tag_List__",
+"         \ "_NERD_tree_",
+"         \ "Source_Explorer"
+"         \ ]
 
 " NERD Tree
-nmap <F8> :NERDTreeToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
 let NERDTreeWinPos = "left"
-
-" choose a favorite key to show/hide quickmenu
-noremap <silent><F12> :call quickmenu#toggle(0)<cr>
-
-" enable cursorline (L) and cmdline help (H)
-let g:quickmenu_options = "HL"
+" How can I close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " <Beautiful theme>
 if ! has("gui_running")
     set t_Co=256
 endif
+
 " feel free to choose :set background=light for a different style
 set background=dark
 colors peaksea
 
-set guifont=Arial_monospaced_for_SAP:h9:cANSI
-set gfw=幼圆:h10:cGB2312
+" ligth line
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+" VIM Preview, tips
+" 1> ctags --fields=+nS
+" 2> close preview > CTRL+W z 
+noremap <F3> :PreviewTag<CR>
+
+noremap <m-u> :PreviewScroll -1<cr>
+noremap <m-d> :PreviewScroll +1<cr>
+inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
+inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
+
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+
+noremap <F4> :PreviewSignature!<cr>
+inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
+
+
+" === [Special Plugged Configuration] <END>
 
