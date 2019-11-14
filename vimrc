@@ -153,6 +153,7 @@ Plug 'skywind3000/gutentags_plus'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'alok/notational-fzf-vim'
 
 Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/peaksea'
@@ -160,7 +161,6 @@ Plug 'itchyny/lightline.vim'
 
 " NOTE> *Some useful plugins, but not persent.
 " Plug 'tpope/vim-fugitive'
-" Plug 'alok/notational-fzf-vim'
 " Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
@@ -170,8 +170,8 @@ Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
-" if !isdirectory($HOME.'/VimNote') && exists('*mkdir') | call mkdir($HOME.'/VimNote') | endif
-" let g:nv_search_paths = [$HOME.'/VimNote']
+if !isdirectory($HOME.'/VimNote') && exists('*mkdir') | call mkdir($HOME.'/VimNote') | endif
+let g:nv_search_paths = [$HOME.'/VimNote']
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
