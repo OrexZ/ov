@@ -130,9 +130,7 @@ command! -nargs=0 Ov edit $MYVIMRC
 nnoremap <silent> <C-l>    :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <c-\>    <c-^>
 
-command W w !sudo tee % > /dev/null
-command CD cd %:h
-
+command! W w !sudo tee % > /dev/null
 
 " === [Special Plugged Configuration] <BEG>
 "
@@ -295,7 +293,7 @@ let g:lightline = {
 " VIM Preview, tips
 " 1> ctags --fields=+nS
 " 2> close preview > CTRL+W z 
-noremap <F3> :PreviewTag<CR>
+noremap <F2> :PreviewTag<CR>
 
 noremap <m-u> :PreviewScroll -1<cr>
 noremap <m-d> :PreviewScroll +1<cr>
@@ -308,6 +306,15 @@ autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 noremap <F4> :PreviewSignature!<cr>
 inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
 
-
 " === [Special Plugged Configuration] <END>
+
+" show the tail space!
+highlight YouExtraWhitespace ctermbg=red guibg=red
+match YouExtraWhitespace /\s\+$/
+
+" NOTE> insert mode not show !!!
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
