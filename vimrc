@@ -52,6 +52,9 @@ set noshowmode             " 'lightline' plugin is more useful.
 
 set wildmode    =longest,list
 
+" no loop for search.
+set nowrapscan
+
 " AUTO change workspace: https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
 " set autochdir
 autocmd BufEnter * silent! lcd %:p:h
@@ -259,7 +262,7 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 " let g:SrcExpl_refreshTime = 10
 " let g:SrcExpl_jumpKey = "<ENTER>"
 " let g:SrcExpl_gobackKey = "<SPACE>"
-" let g:SrcExpl_searchLocalDef = 1 
+" let g:SrcExpl_searchLocalDef = 1
 " let g:SrcExpl_isUpdateTags = 0
 " let g:SrcExpl_prevDefKey = "<F3>"
 " let g:SrcExpl_nextDefKey = "<F4>"
@@ -292,7 +295,7 @@ let g:lightline = {
 
 " VIM Preview, tips
 " 1> ctags --fields=+nS
-" 2> close preview > CTRL+W z 
+" 2> close preview > CTRL+W z
 noremap <F2> :PreviewTag<CR>
 
 noremap <m-u> :PreviewScroll -1<cr>
