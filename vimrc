@@ -146,6 +146,7 @@ Plug 'vim-scripts/SrcExpl'
 
 Plug 'vim-scripts/Mark'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 
 Plug 'kien/ctrlp.vim'
