@@ -164,6 +164,7 @@ Plug 'vim-scripts/peaksea'
 Plug 'itchyny/lightline.vim'
 
 Plug 't9md/vim-choosewin'
+Plug 'MattesGroeger/vim-bookmarks'
 
 " NOTE> *Some useful plugins, but not persent.
 " Plug 'tpope/vim-fugitive'
@@ -314,6 +315,19 @@ inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
 
 " useful for switch windows
 nmap  M  <Plug>(choosewin)
+
+" BookMark
+
+let g:bookmark_sign = '>>'
+let g:bookmark_annotation_sign = '##'
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 0
+let g:bookmark_manage_per_buffer = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_show_warning = 0
+let g:bookmark_highlight_lines = 1
+let g:bookmark_center = 1
+let g:bookmark_no_default_key_mappings = 0
 
 " === [Special Plugged Configuration] <END>
 
