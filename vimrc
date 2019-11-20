@@ -162,6 +162,8 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/peaksea'
 Plug 'itchyny/lightline.vim'
 
+Plug 't9md/vim-choosewin'
+
 " NOTE> *Some useful plugins, but not persent.
 " Plug 'tpope/vim-fugitive'
 " Plug 'jistr/vim-nerdtree-tabs'
@@ -308,6 +310,9 @@ autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 
 noremap <F4> :PreviewSignature!<cr>
 inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
+
+" useful for switch windows
+nmap  M  <Plug>(choosewin)
 
 " === [Special Plugged Configuration] <END>
 
