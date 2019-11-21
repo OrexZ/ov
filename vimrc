@@ -314,7 +314,7 @@ noremap <F4> :PreviewSignature!<cr>
 inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
 
 " useful for switch windows
-nmap  M  <Plug>(choosewin)
+nmap  L  <Plug>(choosewin)
 
 " BookMark
 
