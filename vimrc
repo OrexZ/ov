@@ -166,6 +166,8 @@ Plug 'itchyny/lightline.vim'
 Plug 't9md/vim-choosewin'
 Plug 'MattesGroeger/vim-bookmarks'
 
+" Plug 'jdevera/vim-opengrok-search'
+
 " NOTE> *Some useful plugins, but not persent.
 " Plug 'tpope/vim-fugitive'
 " Plug 'jistr/vim-nerdtree-tabs'
@@ -340,4 +342,8 @@ match YouExtraWhitespace /\s\+$/
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 " autocmd BufWinLeave * call clearmatches()
+
+" let b:ogs_app_url = 'http://localhost:8111/source/'
+" let b:ogs_project = 'flask'
+" let g:ogs_browser_command = 'google-chrome'
 
