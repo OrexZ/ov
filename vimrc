@@ -96,7 +96,7 @@ set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
 " refer to: https://blog.csdn.net/diy534/article/details/7327213
-" set fenc        =gbk
+set fencs =utf-8,gbk
 " set guifont=Arial_monospaced_for_SAP:h9:cANSI
 " set gfw=幼圆:h10:cGB2312
 
@@ -166,6 +166,7 @@ Plug 'itchyny/lightline.vim'
 Plug 't9md/vim-choosewin'
 Plug 'MattesGroeger/vim-bookmarks'
 
+" Plug 'guns/xterm-color-table.vim'
 " Plug 'jdevera/vim-opengrok-search'
 
 " NOTE> *Some useful plugins, but not persent.
@@ -291,8 +292,11 @@ if ! has("gui_running")
 endif
 
 " feel free to choose :set background=light for a different style
-set background=dark
-colors peaksea
+" set background=dark
+" colors peaksea
+" [alt] > lucario
+set number
+colorscheme lucario
 
 " ligth line
 let g:lightline = {
