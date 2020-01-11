@@ -294,6 +294,7 @@ endif
 " feel free to choose :set background=light for a different style
 " set background=dark
 " colors peaksea
+
 " [alt] > lucario
 set number
 colorscheme lucario

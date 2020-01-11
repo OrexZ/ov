@@ -1,0 +1,98 @@
+!! xterm & rxvt configruation.
+
+xterm*locale: zh_CN.UTF-8
+xterm*renderFont: true
+! English font
+! xterm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=24
+xterm*faceName: Bitstream Vera Sans Mono:style=Roman:antialias=True:pixelsize=24
+
+! Chinese font
+xterm*faceNameDoublesize:YouYuan:pixelsize=24
+
+! another example method
+!! xterm*faceName: DejaVu Sans Mono:style=Book:antialias=true
+!! xterm*faceNameDoublesize: YouYuan
+!! xterm*faceSize: 20
+
+
+! select all after click-4-times
+XTerm*on4Clicks: all
+
+! lanuch size of window
+XTerm*geometry: 100x30
+
+! backspace help me
+XTerm*backarrowKey: true
+
+
+! clipboard
+XTerm*selectToClipboard: true
+
+! input method
+xterm*inputMethod:ibus
+
+! bell notify
+xterm*bellIsUrgent: false
+
+! scrollbar
+xterm*scrollBar: false
+xterm*rightScrollBar: false
+xterm*SaveLines: 4096
+
+! key maps
+XTerm.vt100.translations: #override \n\
+
+
+! theme from <lucario>
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*termName: xterm-color
+xterm*eightBitInput: false
+
+! rxvt
+URxvt*color0         : #4f4f4f
+URxvt*color1         : #ff6c60
+URxvt*color2         : #fbb036
+URxvt*color3         : #ffffb6
+URxvt*color4         : #5796ed
+URxvt*color5         : #ff73fd
+URxvt*color6         : #8ee478
+URxvt*color7         : #eeeeee
+URxvt*color8         : #4f4f4f
+URxvt*color9         : #fa6960
+URxvt*color10        : #fbb036
+URxvt*color11        : #feffb9
+URxvt*color12        : #6b9fed
+URxvt*color13        : #fc6ffa
+URxvt*color14        : #8ee478
+URxvt*color15        : #ffffff
+URxvt*colorBD        : #ffffff
+URxvt*colorIT        : #ffffff
+URxvt*colorUL        : #ffffff
+URxvt*foreground     : #f8f8f2
+URxvt*background     : #2b3e50
+URxvt*cursorColor    : #e3bf21
+
+!xterm
+XTerm*color0         : #4f4f4f
+XTerm*color1         : #ff6c60
+XTerm*color2         : #fbb036
+XTerm*color3         : #ffffb6
+XTerm*color4         : #5796ed
+XTerm*color5         : #ff73fd
+XTerm*color6         : #8ee478
+XTerm*color7         : #eeeeee
+XTerm*color8         : #4f4f4f
+XTerm*color9         : #fa6960
+XTerm*color10        : #fbb036
+XTerm*color11        : #feffb9
+XTerm*color12        : #6b9fed
+XTerm*color13        : #fc6ffa
+XTerm*color14        : #8ee478
+XTerm*color15        : #ffffff
+XTerm*colorBD        : #ffffff
+XTerm*colorIT        : #ffffff
+XTerm*colorUL        : #ffffff
+XTerm*foreground     : #f8f8f2
+XTerm*background     : #2b3e50
+XTerm*cursorColor    : #e3bf21
+

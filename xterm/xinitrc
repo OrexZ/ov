@@ -1,0 +1,6 @@
+
+# xterm & rxvt conf location
+# required:
+# 1. ln -s $HOME/.vim/xterm/Xresources $HOME/.Xresources
+# 2. ln -s $HOME/.vim/xterm/xinitrc    $HOME/.xinitrc
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
