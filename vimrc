@@ -143,7 +143,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/SrcExpl'
 
-
 Plug 'vim-scripts/Mark'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -151,6 +150,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'kien/ctrlp.vim'
 Plug 'skywind3000/vim-preview'
+Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
@@ -160,16 +160,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'alok/notational-fzf-vim'
 
 Plug 'mhinz/vim-startify'
-Plug 'vim-scripts/peaksea'
 Plug 'itchyny/lightline.vim'
 
-Plug 't9md/vim-choosewin'
-Plug 'MattesGroeger/vim-bookmarks'
-
-" Plug 'guns/xterm-color-table.vim'
-" Plug 'jdevera/vim-opengrok-search'
-
 " NOTE> *Some useful plugins, but not persent.
+" Plug 'vim-scripts/peaksea'
+" Plug 't9md/vim-choosewin'
 " Plug 'tpope/vim-fugitive'
 " Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'junegunn/goyo.vim'
@@ -177,6 +172,8 @@ Plug 'MattesGroeger/vim-bookmarks'
 " Plug 'yggdroot/indentline'
 " Plug 'brookhong/cscope.vim'
 " Plug 'hari-rangarajan/CCTree'
+" Plug 'guns/xterm-color-table.vim'
+" Plug 'jdevera/vim-opengrok-search'
 
 call plug#end()
 
@@ -327,14 +324,15 @@ nmap  L  <Plug>(choosewin)
 
 let g:bookmark_sign = '>>'
 let g:bookmark_annotation_sign = '##'
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 0
-let g:bookmark_manage_per_buffer = 1
-let g:bookmark_auto_close = 1
-let g:bookmark_show_warning = 0
-let g:bookmark_highlight_lines = 1
+let g:bookmark_save_per_working_dir = 0
+"let g:bookmark_auto_save = 1
+"let g:bookmark_manage_per_buffer = 1
+let g:bookmark_auto_close = 0
+let g:bookmark_auto_save_file = $HOME .'/.vim-bookmarks'
+let g:bookmark_show_warning = 1
+let g:bookmark_highlight_lines = 0
 let g:bookmark_center = 1
-let g:bookmark_no_default_key_mappings = 0
+let g:bookmark_location_list = 1
 
 " === [Special Plugged Configuration] <END>
 
