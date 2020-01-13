@@ -162,6 +162,8 @@ Plug 'alok/notational-fzf-vim'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 
+Plug 'guns/xterm-color-table.vim'
+
 " NOTE> *Some useful plugins, but not persent.
 " Plug 'vim-scripts/peaksea'
 " Plug 't9md/vim-choosewin'
@@ -172,7 +174,6 @@ Plug 'itchyny/lightline.vim'
 " Plug 'yggdroot/indentline'
 " Plug 'brookhong/cscope.vim'
 " Plug 'hari-rangarajan/CCTree'
-" Plug 'guns/xterm-color-table.vim'
 " Plug 'jdevera/vim-opengrok-search'
 
 call plug#end()
@@ -317,16 +318,17 @@ autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 noremap <F4> :PreviewSignature!<cr>
 inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
 
+" NerdTee show the Arrow type (common type for all terminal)
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+
 " useful for switch windows
 nmap  L  <Plug>(choosewin)
 
 " BookMark
-
 let g:bookmark_sign = '>>'
 let g:bookmark_annotation_sign = '##'
 let g:bookmark_save_per_working_dir = 0
-"let g:bookmark_auto_save = 1
-"let g:bookmark_manage_per_buffer = 1
 let g:bookmark_auto_close = 0
 let g:bookmark_auto_save_file = $HOME .'/.vim-bookmarks'
 let g:bookmark_show_warning = 1
@@ -339,14 +341,10 @@ let g:bookmark_location_list = 1
 " show the tail space!
 highlight YouExtraWhitespace ctermbg=red guibg=red
 match YouExtraWhitespace /\s\+$/
-
 " NOTE> insert mode not show !!!
 " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 " autocmd BufWinLeave * call clearmatches()
 
-" let b:ogs_app_url = 'http://localhost:8111/source/'
-" let b:ogs_project = 'flask'
-" let g:ogs_browser_command = 'google-chrome'
 
